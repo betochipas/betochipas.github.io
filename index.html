@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Beto's Chipas</title>
+  <meta name="description" content="Chipas caseras recién horneadas · bollitos de queso crocantes por fuera, esponjosos por dentro. Pedí por WhatsApp.">
+  <meta property="og:title" content="Beto's Chipas">
+  <meta property="og:description" content="Chipas caseras recién horneadas. Pedí por WhatsApp.">
+  <meta name="theme-color" content="#c0392b">
+
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+
+    body{
+      font-family:system-ui,-apple-system,sans-serif;
+      background:linear-gradient(180deg,#fff8ed 0%,#fdf0dc 30%,#fbe9c8 100%);
+      color:#3d2b1f;min-height:100vh;line-height:1.6;
+      padding:0 20px 40px;
+    }
+    .contenedor{max-width:430px;margin:0 auto}
+
+    .hero{text-align:center;padding:44px 0 20px}
+    .logo-contenedor{
+      width:140px;height:140px;margin:0 auto 16px;
+      background:linear-gradient(180deg,#fff8ed,#fdf0dc);
+      border-radius:50%;display:flex;align-items:center;justify-content:center;
+      overflow:hidden;box-shadow:0 4px 16px rgba(140,100,50,.12);
+    }
+    .logo-contenedor img{max-width:110px;max-height:110px;width:auto;height:auto;mix-blend-mode:darken}
+    .hero h1{font-size:2.1rem;font-weight:800;color:#8b4513;letter-spacing:-0.5px}
+    .hero h1 span{color:#d4952a}
+    .hero .tagline{font-size:.9rem;color:#a08060;margin-top:6px;font-style:italic}
+    .hero .subtagline{font-size:.78rem;color:#c4a882;margin-top:3px}
+
+    .tarjeta{
+      background:linear-gradient(135deg,#fffdf9 0%,#fff9f0 100%);
+      border:1px solid #f0d9b5;border-radius:24px;padding:22px 24px;
+      margin-bottom:16px;box-shadow:0 4px 16px rgba(140,100,50,.08);
+    }
+    .tarjeta-destacada{border-color:#d4952a;background:linear-gradient(135deg,#fff7ea 0%,#fff3dc 100%)}
+
+    .productos{display:flex;flex-direction:column;gap:12px;margin-bottom:20px}
+    .producto{
+      background:linear-gradient(135deg,#fffdf9 0%,#fff8ee 100%);
+      border:1px solid #f0d9b5;border-radius:20px;padding:18px 22px;
+      display:flex;align-items:center;gap:14px;
+      box-shadow:0 3px 12px rgba(140,100,50,.06);
+      transition:transform .15s;
+    }
+    .producto:active{transform:scale(.98)}
+    .producto .circulo{
+      width:44px;height:34px;border-radius:50% / 55% 55% 45% 45%;min-width:44px;
+      position:relative;display:flex;align-items:center;justify-content:center;
+    }
+    .producto .circulo::after{
+      content:'';position:absolute;top:10%;left:20%;width:18%;height:14%;
+      background:rgba(255,255,255,.3);border-radius:50%;
+    }
+    .producto .circulo.chica{background:linear-gradient(180deg,#f8d486 0%,#e0b040 100%);box-shadow:0 3px 10px rgba(160,100,20,.2)}
+    .producto .circulo.grande{background:linear-gradient(180deg,#f0c860 0%,#d4952a 100%);box-shadow:0 4px 12px rgba(160,100,20,.25)}
+    .producto .circulo.pan{
+      font-size:1.8rem;background:linear-gradient(180deg,#e8b84b 0%,#c0781a 100%);
+      box-shadow:0 5px 14px rgba(140,80,10,.3);width:52px;height:40px;min-width:52px;
+      border-radius:50% / 55% 55% 45% 45%;
+    }
+    .producto .circulo.pan::after{display:none}
+    .producto .info{flex:1}
+    .producto .nombre{font-weight:700;font-size:1.05rem;color:#5c3a1e}
+    .producto .precio{font-size:1.25rem;font-weight:800;color:#b8751a;margin-top:2px}
+    .producto .detalle{font-size:.78rem;color:#b8a088;line-height:1.4}
+
+    .link{
+      display:flex;align-items:center;justify-content:center;gap:10px;
+      padding:18px 24px;border-radius:18px;font-size:1.05rem;font-weight:700;
+      text-decoration:none;color:#fff;transition:all .15s;
+      box-shadow:0 4px 14px rgba(0,0,0,.1);margin-bottom:12px;
+    }
+    .link:active{transform:scale(.97)}
+    .link-wsp{background:linear-gradient(135deg,#25D366,#128C7E)}
+    .link-wsp:hover{box-shadow:0 6px 20px rgba(37,211,102,.3)}
+    .link-insta{
+      background:linear-gradient(135deg,#fffdf9,#fff8ee);
+      color:#5c3a1e;border:2px solid #f0d9b5;
+      box-shadow:0 2px 8px rgba(140,100,50,.06);
+    }
+
+    .footer{text-align:center;padding:20px 0 8px}
+    .footer p{font-size:.72rem;color:#c4a882}
+    .footer .corazon{color:#d4952a}
+
+    /* Decorative chipa dots */
+    .chipitas{
+      display:flex;justify-content:center;gap:10px;
+      margin-bottom:16px;padding:8px 0;
+    }
+    .chipitas span{
+      width:10px;height:10px;border-radius:50%;
+      background:#d4952a;opacity:.3;
+    }
+    .chipitas span:nth-child(2){opacity:.5;width:12px;height:12px}
+    .chipitas span:nth-child(3){opacity:.7;width:14px;height:14px}
+
+    @keyframes fadeUp {
+      from{opacity:0;transform:translateY(14px)}
+      to{opacity:1;transform:translateY(0)}
+    }
+    .producto:nth-child(1){animation:fadeUp .4s ease-out}
+    .producto:nth-child(2){animation:fadeUp .4s ease-out .1s both}
+    .producto:nth-child(3){animation:fadeUp .4s ease-out .2s both}
+    .link:nth-of-type(1){animation:fadeUp .4s ease-out .3s both}
+    .link:nth-of-type(2){animation:fadeUp .4s ease-out .35s both}
+  </style>
+</head>
+<body>
+  <div class="contenedor">
+
+    <div class="hero">
+      <div class="logo-contenedor"><img src="logo.png" alt="Beto's Chipas" class="logo-img"></div>
+      <h1>Beto's <span>Chipas</span></h1>
+      <p class="tagline">Bollitos de queso recién horneados</p>
+      <p class="subtagline">crocantes por fuera, esponjosos por dentro</p>
+    </div>
+
+    <div class="chipitas"><span></span><span></span><span></span></div>
+
+    <div class="tarjeta tarjeta-destacada" style="text-align:center">
+      <p style="font-size:.92rem;color:#8b6914;margin-bottom:6px;font-weight:500">Hechos a mano todos los días con fécula de mandioca, queso Mar del Plata y mucho amor</p>
+      <p style="font-size:.75rem;color:#b8a088">Precios por docena · pedidos con anticipación</p>
+    </div>
+
+    <div class="productos">
+      <div class="producto">
+        <div class="circulo chica"></div>
+        <div class="info">
+          <div class="nombre">Chipas chicas</div>
+          <div class="precio">$5.000</div>
+          <div class="detalle">Bocaditos dorados · 48 por kilo</div>
+        </div>
+      </div>
+
+      <div class="producto">
+        <div class="circulo grande"></div>
+        <div class="info">
+          <div class="nombre">Chipas grandes</div>
+          <div class="precio">$10.000</div>
+          <div class="detalle">Las clásicas de Beto · 24 por kilo</div>
+        </div>
+      </div>
+
+      <div class="producto">
+        <div class="circulo pan">🍞</div>
+        <div class="info">
+          <div class="nombre">Panes de chipa</div>
+          <div class="precio">$20.000</div>
+          <div class="detalle">Tamaño familiar · ideales para la merienda</div>
+        </div>
+      </div>
+    </div>
+
+    <a href="https://wa.me/541158490144?text=Hola%20Beto!%20Quer%C3%ADa%20hacer%20un%20pedido...%0A" class="link link-wsp" target="_blank" rel="noopener">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Pedir por WhatsApp
+    </a>
+
+    <a href="https://www.instagram.com/betochipas" class="link link-insta" target="_blank" rel="noopener">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+      @betochipas en Instagram
+    </a>
+
+    <div class="tarjeta" style="text-align:center">
+      <p style="font-size:.85rem;color:#a08060;font-weight:600">🕐 Lunes a sábados · 8:00 a 20:00</p>
+    </div>
+
+    <div class="footer">
+      <p>Beto's Chipas · hecho con <span class="corazon">❤</span> en casa</p>
+    </div>
+
+  </div>
+</body>
+</html>
