@@ -50,12 +50,24 @@
     }
     .producto:active{transform:scale(.98)}
     .producto .foto-producto{
-      width:72px;height:72px;border-radius:16px;object-fit:cover;
-      min-width:72px;
+      width:72px;height:72px;border-radius:16px;min-width:72px;
       box-shadow:0 2px 8px rgba(140,100,50,.12);
+      background-size:200% auto;
+      background-repeat:no-repeat;
     }
-    .producto .foto-producto.chicas{object-position:25% center}
-    .producto .foto-producto.grandes{object-position:75% center}
+    .producto .foto-producto.chicas{
+      background-image:url(chipas.jpg);
+      background-position:left center;
+    }
+    .producto .foto-producto.grandes{
+      background-image:url(chipas.jpg);
+      background-position:right center;
+    }
+    .producto .foto-producto.panes{
+      background-image:url(panes.jpg);
+      background-size:cover;
+      background-position:center;
+    }
     .producto .info{flex:1}
     .producto .nombre{font-weight:700;font-size:1.05rem;color:#5c3a1e}
     .producto .precio{font-size:1.25rem;font-weight:800;color:#b8751a;margin-top:2px}
@@ -122,7 +134,7 @@
 
     <div class="productos">
       <div class="producto">
-        <img src="chipas.jpg" class="foto-producto chicas" alt="Chipas chicas">
+        <div class="foto-producto chicas"></div>
         <div class="info">
           <div class="nombre">Chipas chicas</div>
           <div class="precio">$5.000</div>
@@ -131,7 +143,7 @@
       </div>
 
       <div class="producto">
-        <img src="chipas.jpg" class="foto-producto grandes" alt="Chipas grandes">
+        <div class="foto-producto grandes"></div>
         <div class="info">
           <div class="nombre">Chipas grandes</div>
           <div class="precio">$5.000</div>
@@ -140,7 +152,7 @@
       </div>
 
       <div class="producto">
-        <img src="panes.jpg" class="foto-producto" alt="Panes de chipa">
+        <div class="foto-producto panes"></div>
         <div class="info">
           <div class="nombre">Panes de chipa</div>
           <div class="precio">$5.000</div>
